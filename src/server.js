@@ -1,7 +1,7 @@
 const express = require("express");
 const server = express();
 const cors = require("cors");
-const { dashboard } = require("./page");
+const pages = require("./page");
 server
   .use(cors())
   .use(function (req, res, next) {
@@ -16,7 +16,8 @@ server
   .use(express.urlencoded({ extended: true }))
   .use(express.static("public"))
   .use(express.json())
-  .get("/", dashboard)
+  .get("/", pages.login)
+  .get("/cadastro", pages.cadastroLogin)
   .listen(5500);
 
 const nunjucks = require("nunjucks");
